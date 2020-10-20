@@ -7,24 +7,26 @@ import androidx.leanback.widget.ListRow
 import androidx.leanback.widget.ListRowPresenter
 
 class MainAdapter(private val context: Context) : ArrayObjectAdapter(ListRowPresenter()) {
+    private val catHeaderItem = HeaderItem("Cats")
+    private val hatHeaderItem = HeaderItem("Hats")
+
+    private val catAdapter = ArrayObjectAdapter(CatPresenter(context))
+    private val hatAdapter = ArrayObjectAdapter(HatPresenter(context))
+
     private var catRow: ListRow? = null
     private var hatRow: ListRow? = null
 
     fun setCats(cats: List<Cat>) {
-        val headerItem = HeaderItem("Cats")
-        val adapter = ArrayObjectAdapter(CatPresenter(context))
-        adapter.setItems(cats, null)
-        catRow = ListRow(headerItem, adapter)
+        catAdapter.setItems(cats, CatDiffCallback())
+        catRow = ListRow(1L, catHeaderItem, catAdapter)
         val listRowList = listOfNotNull(catRow, hatRow)
-        setItems(listRowList, null)
+        setItems(listRowList, ListRowDiffCallback())
     }
 
     fun setHats(hats: List<Hat>) {
-        val headerItem = HeaderItem("Hats")
-        val adapter = ArrayObjectAdapter(HatPresenter(context))
-        adapter.setItems(hats, null)
-        hatRow = ListRow(headerItem, adapter)
+        hatAdapter.setItems(hats, HatDiffCallback())
+        hatRow = ListRow(2L, hatHeaderItem, hatAdapter)
         val listRowList = listOfNotNull(catRow, hatRow)
-        setItems(listRowList, null)
+        setItems(listRowList, ListRowDiffCallback())
     }
 }
