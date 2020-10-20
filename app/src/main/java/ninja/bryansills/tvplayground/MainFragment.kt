@@ -133,26 +133,6 @@ class MainFragment : BrowseSupportFragment() {
             item: Any,
             rowViewHolder: RowPresenter.ViewHolder,
             row: Row) {
-
-            if (item is Movie) {
-                Log.d(TAG, "Item: " + item.toString())
-                val intent = Intent(context, DetailsActivity::class.java)
-                intent.putExtra(DetailsActivity.MOVIE, item)
-
-                val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    requireActivity(),
-                    (itemViewHolder.view as ImageCardView).mainImageView,
-                    DetailsActivity.SHARED_ELEMENT_NAME)
-                    .toBundle()
-                activity?.startActivity(intent, bundle)
-            } else if (item is String) {
-                if (item.contains(getString(R.string.error_fragment))) {
-                    val intent = Intent(context, BrowseErrorActivity::class.java)
-                    startActivity(intent)
-                } else {
-                    Toast.makeText(context, item, Toast.LENGTH_SHORT).show()
-                }
-            }
         }
     }
 
