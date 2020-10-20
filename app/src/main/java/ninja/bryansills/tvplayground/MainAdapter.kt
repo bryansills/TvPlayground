@@ -21,7 +21,7 @@ class MainAdapter(private val context: Context) : ArrayObjectAdapter(ListRowPres
 
     fun setHats(hats: List<Hat>) {
         val headerItem = HeaderItem("Hats")
-        val adapter = ArrayObjectAdapter(CatPresenter(context))
+        val adapter = ArrayObjectAdapter(HatPresenter(context))
         adapter.setItems(hats, null)
         hatRow = ListRow(headerItem, adapter)
         val listRowList = listOfNotNull(catRow, hatRow)
