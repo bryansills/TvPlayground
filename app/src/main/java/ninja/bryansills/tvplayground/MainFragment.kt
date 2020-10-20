@@ -41,7 +41,11 @@ class MainFragment : BrowseSupportFragment() {
 
         setOnSearchClickedListener {
             val randomNumber = random.nextInt(0, 20)
-            if (randomNumber % 2 == 0) {
+            if (randomNumber % 7 == 0) {
+                viewModel.clearCats()
+            } else if (randomNumber % 8 == 0) {
+                viewModel.clearHats()
+            } else if (randomNumber % 2 == 0) {
                  viewModel.addCat(
                      Cat(
                          "Cool Cat #${randomNumber}",

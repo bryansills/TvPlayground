@@ -24,4 +24,12 @@ class MainViewModel : ViewModel() {
         val currentHats = _hats.value ?: listOf()
         _hats.postValue(currentHats + hat)
     }
+
+    fun clearCats() {
+        _cats.postValue(listOf())
+    }
+
+    fun clearHats() {
+        _hats.postValue(listOf())
+    }
 }

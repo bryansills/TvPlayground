@@ -18,14 +18,22 @@ class MainAdapter(private val context: Context) : ArrayObjectAdapter(ListRowPres
 
     fun setCats(cats: List<Cat>) {
         catAdapter.setItems(cats, CatDiffCallback())
-        catRow = ListRow(1L, catHeaderItem, catAdapter)
+        catRow = if (cats.isEmpty()) {
+            null
+        } else {
+            ListRow(1L, catHeaderItem, catAdapter)
+        }
         val listRowList = listOfNotNull(catRow, hatRow)
         setItems(listRowList, ListRowDiffCallback())
     }
 
     fun setHats(hats: List<Hat>) {
         hatAdapter.setItems(hats, HatDiffCallback())
-        hatRow = ListRow(2L, hatHeaderItem, hatAdapter)
+        hatRow = if (hats.isEmpty()) {
+            null
+        } else {
+            ListRow(2L, hatHeaderItem, hatAdapter)
+        }
         val listRowList = listOfNotNull(catRow, hatRow)
         setItems(listRowList, ListRowDiffCallback())
     }
